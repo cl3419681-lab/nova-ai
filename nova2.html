@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nova AI</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111827;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat {
+    width: 90%;
+    max-width: 600px;
+    height: 80vh;
+    background: #1f2937;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    padding: 20px;
+    background: #2563eb;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 12px;
+    max-width: 80%;
+}
+
+.bot {
+    background: #374151;
+}
+
+.user {
+    background: #2563eb;
+    margin-left: auto;
+}
+
+.input-area {
+    display: flex;
+    padding: 15px;
+    background: #111827;
+}
+
+input {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+button {
+    margin-left: 10px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat">
+
+<div class="header">
+🤖 Nova AI
+</div>
+
+<div class="messages" id="messages">
+
+<div class="message bot">
+¡Hola! 👋 Soy Nova AI. Pregúntame algo.
+</div>
+
+</div>
+
+<div class="input-area">
+
+<input id="input" placeholder="Escribe tu pregunta...">
+
+<button onclick="sendMessage()">Enviar</button>
+
+</div>
+
+</div>
+
+<script>
+
+function sendMessage() {
+
+let input = document.getElementById("input");
+
+let text = input.value.trim();
+
+if (text === "") return;
+
+let messages = document.getElementById("messages");
+
+messages.innerHTML += `
+<div class="message user">
+${text}
+</div>
+`;
+
+let pregunta = text.toLowerCase();
+
+let respuesta = "";
+
+if (pregunta.includes("hola")) {
+
+respuesta = "¡Hola! 👋 Soy Nova AI.";
+
+}
+
+else if (pregunta.includes("quién eres")) {
+
+respuesta = "Soy Nova AI, un chatbot creado como proyecto escolar. 🤖";
+
+}
+
+else if (pregunta.includes("qué es la inteligencia artificial")) {
+
+respuesta = "La inteligencia artificial es una tecnología que permite a las computadoras realizar tareas que normalmente requieren inteligencia humana.";
+
+}
+
+else if (pregunta.includes("cuánto es 5 + 5")) {
+
+respuesta = "5 + 5 = 10. 🧮";
+
+}
+
+else if (pregunta.includes("méxico")) {
+
+respuesta = "México es un país de América del Norte con una gran diversidad cultural e histórica.";
+
+}
+
+else if (pregunta.includes("adiós")) {
+
+respuesta = "¡Adiós! 👋 Espero volver a hablar contigo.";
+
+}
+
+else {
+
+respuesta = "🤖 Todavía no conozco esa pregunta. Estoy aprendiendo poco a poco.";
+
+}
+
+messages.innerHTML += `
+<div class="message bot">
+${respuesta}
+</div>
+`;
+
+input.value = "";
+
+messages.scrollTop = messages.scrollHeight;
+
+}
+
+</script>
+
+</body>
+</html>
